@@ -1,0 +1,34 @@
+﻿<div class="col">
+    <div class="progress position-relative" style="height: 30px">
+        <div class="progress-bar"
+             role="progressbar"
+             style="@ProgressWidth">
+            @if (!IsBoss)
+            {
+                <h5 class="justify-content-center d-flex position-absolute w-100 text-black">
+                    @Name: @Current/@Max
+                </h5>
+            }
+            @if (IsBoss)
+            {
+                <h5 class="justify-content-center d-flex position-absolute w-100 text-black">
+                    @FloorBossText
+                </h5>
+            }
+        </div>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public string ProgressWidth { get; set; }
+    [Parameter]
+    public bool IsBoss { get; set; }
+    [Parameter]
+    public string Name { get; set; }
+    [Parameter]
+    public int Current { get; set; }
+    [Parameter]
+    public int Max { get; set; }
+    [Parameter]
+    public string FloorBossText { get; set; }
+}

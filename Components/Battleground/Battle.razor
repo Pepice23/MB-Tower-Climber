@@ -1,0 +1,20 @@
+﻿<div class="row m-2">
+    <div class="col">
+        <PlayerCard />
+    </div>
+    <div class="col text-black">
+        <h1>You win</h1>
+    </div>
+    <div class="col m-2">
+        <MonsterCard />
+        @if (MonsterCount == 15)
+        {
+            <h3>Time remaining:</h3>
+
+        })
+    </div>
+</div>
+
+@code {
+    public int MonsterCount { get; set; } = 15;
+}

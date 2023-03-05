@@ -1,0 +1,25 @@
+﻿<div class="row m-2">
+    <StageProgress Max="100"
+                   Current="50"
+                   Name="Floor"
+                   ProgressWidth="width:50%" />
+    @if (MonsterCount < 15)
+    {
+        <StageProgress Max="15"
+                   Current="12"
+                   Name="Monster"
+                   ProgressWidth="width:80%" />
+    }
+    @if (MonsterCount == 15)
+    {
+        <StageProgress Max="15"
+                   Current="15"
+                   ProgressWidth="width:100%"
+                   IsBoss="true"
+                   FloorBossText="Boss of the 50th floor" />
+    }
+</div>
+
+@code {
+    public int MonsterCount { get; set; } = 15;
+}
