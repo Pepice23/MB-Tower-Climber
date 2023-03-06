@@ -23,6 +23,7 @@ public static class MauiProgram
 #endif
 
         builder.Services.AddScoped<GameService>();
+        builder.Services.AddScoped<PlayerService>();
 
 
         return builder.Build();
