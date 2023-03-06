@@ -15,7 +15,7 @@
         public string BossText => $"Boss of the {FloorCount} floor";
 
         private int _monsterCountWidth;
-        private int _bossTimerWidth;
+        private int _bossTimerWidth = 100;
 
         public void AddFloor()
         {

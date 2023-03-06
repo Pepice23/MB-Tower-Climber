@@ -1,4 +1,6 @@
 ﻿@inject GameService GameService
+@implements IDisposable
+
 <div class="row m-2">
     <div class="col">
         <PlayerCard />
@@ -18,5 +20,13 @@
 </div>
 
 @code {
-    public int MonsterCount { get; set; } = 15;
+    protected override void OnInitialized()
+    {
+        GameService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        GameService.OnChange -= StateHasChanged;
+    }
 }
