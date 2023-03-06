@@ -1,0 +1,13 @@
+﻿@inject GameService GameService
+<div class="progress position-relative text-black m-2" style="height: 30px">
+    <div class="progress-bar bg-danger"
+         role="progressbar"
+         style="@GameService.BossTimerString"></div>
+    <h5 class="justify-content-center d-flex position-absolute w-100">
+        @GameService.BossTimer sec
+    </h5>
+</div>
+
+@code {
+
+}
