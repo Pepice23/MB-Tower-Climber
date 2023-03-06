@@ -11,7 +11,7 @@
         public int DamagePerSecond { get; set; } = 1;
         public int Money { get; set; } = 0;
 
-        public bool IsVisible { get; set; } = true;
+        public bool IsPlayerVisible { get; set; } = true;
 
         public string XpBarWidth => $"width:{_xpBarWidth}%";
         public string PlayerAvatar { get; set; } = "assets/heroes/hero1.jpeg";
