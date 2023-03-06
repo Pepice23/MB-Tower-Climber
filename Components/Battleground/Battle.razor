@@ -1,4 +1,5 @@
-﻿<div class="row m-2">
+﻿@inject GameService GameService
+<div class="row m-2">
     <div class="col">
         <PlayerCard />
     </div>
@@ -7,11 +8,12 @@
     </div>
     <div class="col m-2">
         <MonsterCard />
-        @if (MonsterCount == 15)
+        @if (GameService.MonsterCount == 15)
         {
             <h3>Time remaining:</h3>
+            <BossTimer />
 
-        })
+        }
     </div>
 </div>
 
