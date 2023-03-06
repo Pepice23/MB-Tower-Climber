@@ -5,12 +5,14 @@
         public event Action OnChange;
 
         public int FloorCount { get; set; } = 1;
-        public int MonsterCount { get; set; } = 1;
+        public int MonsterCount { get; set; } =0;
         public int TotalMonsterCount { get; set; } = 0;
 
         public string FloorCountString => $"width:{FloorCount}%";
         public string MonsterCountString => $"width:{_monsterCountWidth}%";
-        private int _monsterCountWidth = 7;
+        public string BossText => $"Boss of the {FloorCount} floor";
+
+        private int _monsterCountWidth;
 
         public void AddFloor()
         {
@@ -28,7 +30,7 @@
 
         public void ResetMonster()
         {
-            MonsterCount = 1;
+            MonsterCount = 0;
             MonsterWidthCalculator();
             NotifyStateChanged();
         }

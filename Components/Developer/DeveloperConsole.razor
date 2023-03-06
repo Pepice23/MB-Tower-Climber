@@ -1,4 +1,5 @@
 ﻿@inject GameService GameService
+@inject PlayerService PlayerService
 
 <div class="row">
     <div class="col">
@@ -29,6 +30,7 @@
         <button class="btn btn-primary" @onclick="GameService.AddFloor">Add floor</button>
         <button class="btn btn-primary" @onclick="GameService.AddMonster">Add monster</button>
         <button class="btn btn-primary" @onclick="GameService.ResetMonster">Reset monster</button>
+        <button class="btn btn-primary" @onclick="PlayerService.CalculateXP">Add XP</button>
     </div>
 </div>
 
