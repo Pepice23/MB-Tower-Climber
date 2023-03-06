@@ -1,4 +1,6 @@
-﻿<div class="row">
+﻿@inject GameService GameService
+
+<div class="row">
     <div class="col">
         <div class="row">
             <div class="col">
@@ -21,7 +23,12 @@
     </div>
     <div class="col">
         <h3>Total Monster Count:</h3>
-        <h3>1500</h3>
+        <h3>@GameService.TotalMonsterCount</h3>
+    </div>
+    <div class="col">
+        <button class="btn btn-primary" @onclick="GameService.AddFloor">Add floor</button>
+        <button class="btn btn-primary" @onclick="GameService.AddMonster">Add monster</button>
+        <button class="btn btn-primary" @onclick="GameService.ResetMonster">Reset monster</button>
     </div>
 </div>
 
