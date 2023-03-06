@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MB_Tower_Climber.Services;
+using Microsoft.Extensions.Logging;
 
 namespace MB_Tower_Climber;
 
@@ -21,6 +22,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
+        builder.Services.AddScoped<GameService>();
 
 
         return builder.Build();
