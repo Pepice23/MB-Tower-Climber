@@ -1,7 +1,7 @@
 ﻿@inject PlayerService PlayerService
 @implements IDisposable
 
-@if (PlayerService.IsVisible)
+@if (PlayerService.IsPlayerVisible)
 {
     <div class="col text-black">
         <h3>Level: @PlayerService.PlayerLevel</h3>
