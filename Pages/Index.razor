@@ -1,21 +1,34 @@
 ﻿@page "/"
 
-<DeveloperConsole />
-<StageDisplay />
-<Battle />
-<div class="row m-2">
-    <div class="col m-2">
-        <button class="btn btn-dark">
-            <img src="/assets/UI/attack-button.png"
-                 alt="attack button"
-                 class="attack-button" />
-        </button>
+<DeveloperConsole/>
+<div class="row m-3 battle-background" style="@BattleBackground">
+    <StageDisplay />
+    <Battle />
+    <div class="row m-2">
+        <div class="col m-2">
+            <button class="btn btn-dark">
+                <img src="/assets/UI/attack-button.png"
+                     alt="attack button"
+                     class="attack-button" />
+            </button>
+        </div>
     </div>
 </div>
 
+@code {
+    public string BattleBackground { get; set; } = $"background-image: url(assets/background/bg-1.png)";
+}
+
+
 <style>
-.attack-button {
+    .attack-button {
         width: 100px;
         height: 100px;
+    }
+
+    .battle-background {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 </style>
