@@ -1,0 +1,23 @@
+﻿@inject PlayerService PlayerService
+@implements IDisposable
+
+<div class="progress position-relative text-black" style="height: 30px">
+    <div class="progress-bar"
+         role="progressbar"
+         style="@PlayerService.XpBarWidth"></div>
+    <h5 class="justify-content-center d-flex position-absolute w-100">
+        XP: @PlayerService.CurrentXP/@PlayerService.XPToNextLevel
+    </h5>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        PlayerService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        PlayerService.OnChange -= StateHasChanged;
+    }
+}
