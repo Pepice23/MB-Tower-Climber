@@ -1,0 +1,41 @@
+﻿@inject PlayerService PlayerService
+@implements IDisposable
+
+@if (PlayerService.IsVisible)
+{
+    <div class="col text-black">
+        <h3>Level: @PlayerService.PlayerLevel</h3>
+        <img src="@PlayerService.PlayerAvatar"
+             alt="Hero Picture"
+             class="picture-size m-2" />
+        <h3>
+            Damage per Click:
+            @PlayerService.DamagePerClick
+        </h3>
+        <h3>
+            Damage per Second:
+            @PlayerService.DamagePerSecond
+        </h3>
+        <XPBar />
+    </div>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        PlayerService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        PlayerService.OnChange -= StateHasChanged;
+    }
+
+}
+
+<style>
+    .picture-size {
+        width: 100px;
+        height: 100px;
+    }
+</style>
