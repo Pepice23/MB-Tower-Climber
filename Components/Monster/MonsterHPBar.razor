@@ -1,5 +1,24 @@
-﻿<h3>MonsterHPBar</h3>
+﻿@inject MonsterService MonsterService
+@implements IDisposable
+
+<div class="progress position-relative text-black" style="height: 30px">
+    <div class="progress-bar bg-success"
+         role="progressbar"
+         style="@MonsterService.HPBarWidth">
+    </div>
+    <h5 class="justify-content-center d-flex position-absolute w-100">
+        HP: @MonsterService.CurrentMonsterHP
+    </h5>
+</div>
 
 @code {
+    protected override void OnInitialized()
+    {
+        MonsterService.OnChange += StateHasChanged;
+    }
 
+    public void Dispose()
+    {
+        MonsterService.OnChange -= StateHasChanged;
+    }
 }
