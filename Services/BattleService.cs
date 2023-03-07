@@ -57,6 +57,7 @@ namespace MB_Tower_Climber.Services
                     {
                         BossTimer.Dispose();
                         PlayerWins();
+                        GoToNextFloor();
                     }
                     if (RemainingBossTime <= 0 && _monsterService.CurrentMonsterHP > 0)
                     {
@@ -89,15 +90,12 @@ namespace MB_Tower_Climber.Services
             }
         }
 
-        void CheckNextFloor()
+        void GoToNextFloor()
         {
-            if (_gameService.MonsterCount > 15)
-            {
-                _gameService.AddFloor();
-                _gameService.ResetMonster();
-                // TODO: get new weapon
-                _gameService.ChangeBackground();
-            }
+            _gameService.AddFloor();
+            _gameService.ResetMonster();
+            // TODO: get new weapon
+            NotifyStateChanged();
         }
 
         void CheckPlayerGetsLoot()
@@ -132,7 +130,6 @@ namespace MB_Tower_Climber.Services
             _gameService.AddMonster();
             _playerService.CalculateXP();
             _playerService.CheckLevelUp();
-            CheckNextFloor();
             CheckPlayerGetsLoot();
             NotifyStateChanged();
         }
