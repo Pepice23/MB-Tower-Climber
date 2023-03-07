@@ -22,6 +22,7 @@
         public void AddFloor()
         {
             FloorCount++;
+            ChangeBackground();
             NotifyStateChanged();
         }
 
