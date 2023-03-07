@@ -6,7 +6,7 @@
          role="progressbar"
          style="@PlayerService.XpBarWidth"></div>
     <h5 class="justify-content-center d-flex position-absolute w-100">
-        XP: @PlayerService.CurrentXP/@PlayerService.XPToNextLevel
+        XP: @CalcUtils.FormatNumber(PlayerService.CurrentXP) /@CalcUtils.FormatNumber(PlayerService.XPToNextLevel)
     </h5>
 </div>
 

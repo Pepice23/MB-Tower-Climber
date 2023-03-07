@@ -10,11 +10,11 @@
              class="picture-size m-2" />
         <h3>
             Damage per Click:
-            @PlayerService.DamagePerClick
+            @CalcUtils.FormatNumber(PlayerService.DamagePerClick)
         </h3>
         <h3>
             Damage per Second:
-            @PlayerService.DamagePerSecond
+            @CalcUtils.FormatNumber(PlayerService.DamagePerSecond)
         </h3>
         <XPBar />
     </div>
