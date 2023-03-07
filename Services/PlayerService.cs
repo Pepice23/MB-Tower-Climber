@@ -7,8 +7,8 @@
         public int PlayerLevel { get; set; } = 1;
         public int CurrentXP { get; set; } = 0;
         public int XPToNextLevel { get; set; } = 100;
-        public int DamagePerClick { get; set; } = 1;
-        public int DamagePerSecond { get; set; } = 1;
+        public int DamagePerClick { get; set; } = 10;
+        public int DamagePerSecond { get; set; } = 10;
         public int Money { get; set; } = 0;
 
         public bool IsPlayerVisible { get; set; } = true;
@@ -18,7 +18,7 @@
 
         private void CalculateXPWidth()
         {
-            _xpBarWidth = CurrentXP * 100 / XPToNextLevel ;
+            _xpBarWidth = CurrentXP * 100 / XPToNextLevel;
         }
 
         public void CalculateXP()
