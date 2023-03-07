@@ -1,7 +1,11 @@
-﻿namespace MB_Tower_Climber.Services
+﻿using System;
+
+namespace MB_Tower_Climber.Services
 {
     public class MonsterService
     {
+        Random random = new Random();
+
         public event Action OnChange;
 
         public bool IsMonsterVisible { get; set; } = true;
@@ -14,24 +18,43 @@
 
         private int _hpBarWidth = 100;
 
-        private readonly PlayerService _playerService;
+        private double BaseMonsterHP = 1.02;
 
-        public MonsterService(PlayerService playerService)
+        private readonly PlayerService _playerService;
+        private readonly GameService _gameService;
+
+        public MonsterService(PlayerService playerService, GameService gameService)
         {
             _playerService = playerService;
+            _gameService = gameService;
         }
 
         public void CalculateMonsterHP()
         {
-            CurrentMonsterHP -= _playerService.DamagePerClick;
+            CurrentMonsterHP -= _playerService.DamagePerSecond;
             CalculateHPWidth();
             NotifyStateChanged();
         }
 
 
-        private void CalculateHPWidth()
+        public void CalculateHPWidth()
         {
             _hpBarWidth = CurrentMonsterHP * 100 / MonsterMaxHP;
+            NotifyStateChanged();
+        }
+
+        public void SetRandomMonsterAvatar()
+        {
+            int randomNumber = random.Next(1, 26);
+            MonsterAvatar = $"assets/enemies/enemy{randomNumber}.jpeg";
+            NotifyStateChanged();
+        }
+
+        public void SetMonsterHP()
+        {
+            MonsterMaxHP = (int)Math.Pow(BaseMonsterHP, _gameService.TotalMonsterCount) * 100;
+            CurrentMonsterHP = MonsterMaxHP;
+            NotifyStateChanged();
         }
 
         private void NotifyStateChanged() => OnChange?.Invoke();
