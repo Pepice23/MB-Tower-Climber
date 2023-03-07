@@ -52,7 +52,7 @@ namespace MB_Tower_Climber.Services
 
         public void SetMonsterHP()
         {
-            MonsterMaxHP = (int)Math.Pow(BaseMonsterHP, _gameService.TotalMonsterCount) * 100;
+            MonsterMaxHP = (int)(100 * Math.Pow(BaseMonsterHP, _gameService.TotalMonsterCount));
             CurrentMonsterHP = MonsterMaxHP;
             NotifyStateChanged();
         }
