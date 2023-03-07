@@ -2,13 +2,15 @@
 {
     public class PlayerService
     {
+        Random random = new Random();
+
         private int _xpBarWidth;
 
         public int PlayerLevel { get; set; } = 1;
         public int CurrentXP { get; set; } = 0;
         public int XPToNextLevel { get; set; } = 100;
         public int DamagePerClick { get; set; } = 10;
-        public int DamagePerSecond { get; set; } = 10;
+        public int DamagePerSecond { get; set; } = 100;
         public int Money { get; set; } = 0;
 
         public bool IsPlayerVisible { get; set; } = true;
@@ -19,12 +21,15 @@
         private void CalculateXPWidth()
         {
             _xpBarWidth = CurrentXP * 100 / XPToNextLevel;
+            NotifyStateChanged();
         }
 
         public void CalculateXP()
         {
-            CurrentXP += 50;
-            CheckLevelUp();
+            double XPPercent = random.Next(5, 11);
+            double XPbase = XPPercent / 100;
+            double XP = XPbase * XPToNextLevel;
+            CurrentXP += (int)XP;
             CalculateXPWidth();
             NotifyStateChanged();
         }
@@ -32,6 +37,7 @@
         private void CalculateNextLevelXP()
         {
             XPToNextLevel = (int)(XPToNextLevel * 1.15);
+            NotifyStateChanged();
         }
 
         public void CheckLevelUp()
@@ -46,8 +52,6 @@
 
             }
         }
-
-
 
         public event Action OnChange;
         private void NotifyStateChanged() => OnChange?.Invoke();
