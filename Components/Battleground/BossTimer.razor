@@ -1,21 +1,22 @@
-﻿@inject GameService GameService
+﻿@inject BattleService BattleService
+
 <div class="progress position-relative text-black m-2" style="height: 30px">
     <div class="progress-bar bg-danger"
          role="progressbar"
-         style="@GameService.BossTimerString"></div>
+         style="@BattleService.BossTimerString"></div>
     <h5 class="justify-content-center d-flex position-absolute w-100">
-        @GameService.BossTimer sec
+        @BattleService.RemainingBossTime sec
     </h5>
-</div>
+</div>S
 
 @code {
     protected override void OnInitialized()
     {
-        GameService.OnChange += StateHasChanged;
+        BattleService.OnChange += StateHasChanged;
     }
 
     public void Dispose()
     {
-        GameService.OnChange -= StateHasChanged;
+        BattleService.OnChange -= StateHasChanged;
     }
 }
