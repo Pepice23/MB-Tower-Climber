@@ -3,14 +3,16 @@
     public class GameService
     {
         public event Action OnChange;
+        Random random = new Random();
 
         public int FloorCount { get; set; } = 1;
         public int MonsterCount { get; set; } = 0;
         public int TotalMonsterCount { get; set; } = 0;
 
-
+        private string BackgroundPicture = "bg-1.png";
         public string FloorCountString => $"width:{FloorCount}%";
         public string MonsterCountString => $"width:{_monsterCountWidth}%";
+        public string BattleBackground => $"background-image: url('assets/background/{BackgroundPicture}');";
 
         public string BossText => $"Boss of the {FloorCount} floor";
 
@@ -45,6 +47,14 @@
             _monsterCountWidth = MonsterCount * 100 / 15;
 
         }
+
+        public void ChangeBackground()
+        {
+            int randomNumber = random.Next(1, 59);
+            BackgroundPicture = $"bg-{randomNumber}.png";
+        }
+
+        
 
         private void NotifyStateChanged() => OnChange?.Invoke();
     }

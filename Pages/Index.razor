@@ -1,7 +1,10 @@
 ﻿@page "/"
 
+@inject GameService GameService
+@implements IDisposable
+
 <DeveloperConsole/>
-<div class="row m-3 battle-background" style="@BattleBackground">
+<div class="row m-3 battle-background" style="@GameService.BattleBackground">
     <StageDisplay />
     <Battle />
     <div class="row m-2">
@@ -16,7 +19,15 @@
 </div>
 
 @code {
-    public string BattleBackground { get; set; } = $"background-image: url(assets/background/bg-1.png)";
+    protected override void OnInitialized()
+    {
+        GameService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        GameService.OnChange -= StateHasChanged;
+    }
 }
 
 
