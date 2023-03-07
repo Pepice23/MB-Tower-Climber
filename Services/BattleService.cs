@@ -5,6 +5,8 @@ namespace MB_Tower_Climber.Services
 {
     public class BattleService
     {
+        Random random = new Random();
+
         private PeriodicTimer NormalTimer;
         private PeriodicTimer BossTimer;
         public TimeSpan GameSpeed = TimeSpan.FromSeconds(1);
@@ -29,11 +31,13 @@ namespace MB_Tower_Climber.Services
 
         private readonly GameService _gameService;
         private MonsterService _monsterService;
+        private PlayerService _playerService;
 
-        public BattleService(GameService gameService, MonsterService monsterService)
+        public BattleService(GameService gameService, MonsterService monsterService, PlayerService playerService)
         {
             _gameService = gameService;
             _monsterService = monsterService;
+            _playerService = playerService;
         }
 
         public async void StartBattle()
@@ -85,6 +89,26 @@ namespace MB_Tower_Climber.Services
             }
         }
 
+        void CheckNextFloor()
+        {
+            if (_gameService.MonsterCount > 15)
+            {
+                _gameService.AddFloor();
+                _gameService.ResetMonster();
+                // TODO: get new weapon
+                _gameService.ChangeBackground();
+            }
+        }
+
+        void CheckPlayerGetsLoot()
+        {
+            int randomNumber = random.Next(1, 101);
+            if (randomNumber <= 20)
+            {
+                Debug.WriteLine("Player gets new loot");
+            }
+        }
+
         private void SetMonster()
         {
             _monsterService.IsMonsterVisible = true;
@@ -106,7 +130,10 @@ namespace MB_Tower_Climber.Services
             _monsterService.IsMonsterVisible = false;
             Outcome = "You win"!;
             _gameService.AddMonster();
-            _gameService.TotalMonsterCount++;
+            _playerService.CalculateXP();
+            _playerService.CheckLevelUp();
+            CheckNextFloor();
+            CheckPlayerGetsLoot();
             NotifyStateChanged();
         }
 
