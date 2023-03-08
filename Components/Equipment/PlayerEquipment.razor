@@ -1,5 +1,6 @@
 ﻿@inject EquipmentService EqipmentService
 @inject BattleService BattleService
+@inject ShopService ShopService
 @implements IDisposable
 
 <div class="row m-2">
@@ -18,12 +19,14 @@
     {
         EqipmentService.OnChange += StateHasChanged;
         BattleService.OnChange += StateHasChanged;
+        ShopService.OnChange += StateHasChanged;
     }
 
     public void Dispose()
     {
         EqipmentService.OnChange -= StateHasChanged;
         BattleService.OnChange -= StateHasChanged;
+        ShopService.OnChange -= StateHasChanged;
     }
 
 }

@@ -5,7 +5,7 @@
         public event Action OnChange;
         Random random = new Random();
 
-        public int FloorCount { get; set; } = 1;
+        public int FloorCount { get; set; } = 11;
         public int MonsterCount { get; set; } = 0;
         public int TotalMonsterCount { get; set; } = 0;
 
@@ -53,8 +53,6 @@
             int randomNumber = random.Next(1, 58);
             BackgroundPicture = $"bg-{randomNumber}.png";
         }
-
-        
 
         private void NotifyStateChanged() => OnChange?.Invoke();
     }

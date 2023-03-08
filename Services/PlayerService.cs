@@ -3,10 +3,12 @@
     public class PlayerService
     {
         private readonly EquipmentService _equipmentService;
+        private readonly GameService _gameService;
 
-        public PlayerService(EquipmentService equipmentService)
+        public PlayerService(EquipmentService equipmentService, GameService gameService)
         {
             _equipmentService = equipmentService;
+            _gameService = gameService;
             CalculatePerClickDamage();
             CalculatePerSecondDamage();
         }
@@ -20,7 +22,7 @@
         public int XPToNextLevel { get; set; } = 100;
         public int DamagePerClick { get; set; } = 10;
         public int DamagePerSecond { get; set; } = 100;
-        public int Money { get; set; } = 0;
+        public int Money { get; set; } = 3000;
 
         public bool IsPlayerVisible { get; set; } = true;
 
@@ -73,6 +75,19 @@
         public void CalculatePerSecondDamage()
         {
             DamagePerSecond = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerSecondDamage;
+            NotifyStateChanged();
+        }
+
+        public void AddMoney()
+        {
+            int RandomNumber = random.Next(_gameService.FloorCount * _gameService.MonsterCount, _gameService.FloorCount * _gameService.MonsterCount * 2);
+            Money += RandomNumber;
+            NotifyStateChanged();
+        }
+
+        public void SubtractMoney(int amount)
+        {
+            Money -= amount;
             NotifyStateChanged();
         }
 

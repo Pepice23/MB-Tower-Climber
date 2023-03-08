@@ -1,10 +1,26 @@
-﻿<div class="row">
+﻿@inject PlayerService PlayerService
+@inject ShopService ShopService
+@implements IDisposable
+
+<div class="row">
     <h1 class="m-2">Shops</h1>
+    <h1 class="m-2">Hero's Money: @CalcUtils.FormatNumber(PlayerService.Money) Gold </h1>
     @*<div class="col"><ItemShop /></div>*@
     <div class="col"><ArmorShop /></div>
     @*<div class="col"><UpgradeShop /></div>*@
 </div>
 
 @code {
+    protected override void OnInitialized()
+    {
+        PlayerService.OnChange += StateHasChanged;
+        ShopService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        PlayerService.OnChange -= StateHasChanged;
+        ShopService.OnChange -= StateHasChanged;
+    }
 
 }

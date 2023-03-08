@@ -1,13 +1,32 @@
 ﻿@inject EquipmentService EqipmentService
+@inject GameService GameService
+@inject ShopService ShopService
+@implements IDisposable
 
 <h1>Armor Shop</h1>
 <div class="col">
     @foreach (Armor armor in EqipmentService.Armors)
     {
-        <ArmorShopCard Armor="armor" />
+        @if (armor.AvailableFromFloor <= GameService.FloorCount)
+        {
+            <ArmorShopCard Armor="armor" />
+        }
+
     }
 </div>
 
 @code {
+    protected override void OnInitialized()
+    {
+        EqipmentService.OnChange += StateHasChanged;
+        GameService.OnChange += StateHasChanged;
+        ShopService.OnChange += StateHasChanged;
+    }
 
+    public void Dispose()
+    {
+        EqipmentService.OnChange -= StateHasChanged;
+        GameService.OnChange -= StateHasChanged;
+        ShopService.OnChange -= StateHasChanged;
+    }
 }

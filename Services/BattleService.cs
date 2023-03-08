@@ -148,6 +148,7 @@ namespace MB_Tower_Climber.Services
             _gameService.TotalMonsterCount++;
             _playerService.CalculateXP();
             _playerService.CheckLevelUp();
+            _playerService.AddMoney();
             CheckPlayerGetsLoot();
             NotifyStateChanged();
         }
