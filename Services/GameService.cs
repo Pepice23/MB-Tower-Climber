@@ -29,14 +29,13 @@
         public void AddMonster()
         {
             MonsterCount++;
-            TotalMonsterCount++;
             MonsterWidthCalculator();
             NotifyStateChanged();
         }
 
         public void ResetMonster()
         {
-            MonsterCount = 0;
+            MonsterCount = 1;
             MonsterWidthCalculator();
             NotifyStateChanged();
         }

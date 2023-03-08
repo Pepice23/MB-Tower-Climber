@@ -38,10 +38,12 @@
     protected override void OnInitialized()
     {
         GameService.OnChange += StateHasChanged;
+        BattleService.OnChange += StateHasChanged;
     }
 
     public void Dispose()
     {
         GameService.OnChange -= StateHasChanged;
+        BattleService.OnChange -= StateHasChanged;
     }
 }

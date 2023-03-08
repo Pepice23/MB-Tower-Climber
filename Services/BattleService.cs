@@ -128,6 +128,7 @@ namespace MB_Tower_Climber.Services
             _monsterService.IsMonsterVisible = false;
             Outcome = "You win"!;
             _gameService.AddMonster();
+            _gameService.TotalMonsterCount++;
             _playerService.CalculateXP();
             _playerService.CheckLevelUp();
             CheckPlayerGetsLoot();
