@@ -2,6 +2,15 @@
 {
     public class PlayerService
     {
+        private readonly EquipmentService _equipmentService;
+
+        public PlayerService(EquipmentService equipmentService)
+        {
+            _equipmentService = equipmentService;
+            CalculatePerClickDamage();
+            CalculatePerSecondDamage();
+        }
+
         Random random = new Random();
 
         private int _xpBarWidth;
@@ -46,6 +55,8 @@
             {
                 PlayerLevel++;
                 CurrentXP -= XPToNextLevel;
+                CalculatePerClickDamage();
+                CalculatePerSecondDamage();
                 CalculateNextLevelXP();
                 CalculateXPWidth();
                 NotifyStateChanged();
@@ -53,7 +64,21 @@
             }
         }
 
+        public void CalculatePerClickDamage()
+        {
+            DamagePerClick = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerClickDamage;
+            NotifyStateChanged();
+        }
+
+        public void CalculatePerSecondDamage()
+        {
+            DamagePerSecond = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerSecondDamage;
+            NotifyStateChanged();
+        }
+
         public event Action OnChange;
+
         private void NotifyStateChanged() => OnChange?.Invoke();
+
     }
 }

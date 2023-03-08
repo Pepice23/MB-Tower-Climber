@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using MB_Tower_Climber.Helpers;
+using System.Diagnostics;
 using System.Threading;
 
 namespace MB_Tower_Climber.Services
@@ -32,12 +33,14 @@ namespace MB_Tower_Climber.Services
         private readonly GameService _gameService;
         private MonsterService _monsterService;
         private PlayerService _playerService;
+        private EquipmentService _equipmentService;
 
-        public BattleService(GameService gameService, MonsterService monsterService, PlayerService playerService)
+        public BattleService(GameService gameService, MonsterService monsterService, PlayerService playerService, EquipmentService equipmentService)
         {
             _gameService = gameService;
             _monsterService = monsterService;
             _playerService = playerService;
+            _equipmentService = equipmentService;
         }
 
         public async void StartBattle()
@@ -103,8 +106,22 @@ namespace MB_Tower_Climber.Services
             int randomNumber = random.Next(1, 101);
             if (randomNumber <= 20)
             {
-                Debug.WriteLine("Player gets new loot");
+                Debug.WriteLine("Player gets loot");
+                _equipmentService.NewWeapon = new Weapon(_playerService.PlayerLevel);
+                CheckWeapon();
+                NotifyStateChanged();
             }
+        }
+
+        private void CheckWeapon()
+        {
+            if (_equipmentService.NewWeapon.PerClickDamage > _equipmentService.EquippedWeapon.PerClickDamage && _equipmentService.NewWeapon.PerSecondDamage > _equipmentService.EquippedWeapon.PerSecondDamage)
+            {
+                _equipmentService.EquippedWeapon = _equipmentService.NewWeapon;
+                _playerService.CalculatePerClickDamage();
+                _playerService.CalculatePerSecondDamage();
+            }
+            NotifyStateChanged();
         }
 
         private void SetMonster()
