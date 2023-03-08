@@ -26,6 +26,7 @@ public static class MauiProgram
         builder.Services.AddScoped<PlayerService>();
         builder.Services.AddScoped<MonsterService>();
         builder.Services.AddScoped<BattleService>();
+        builder.Services.AddScoped<EquipmentService>();
 
 
         return builder.Build();
