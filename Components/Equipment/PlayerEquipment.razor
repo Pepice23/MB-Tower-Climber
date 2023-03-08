@@ -1,0 +1,33 @@
+﻿@inject EquipmentService EqipmentService
+@inject BattleService BattleService
+@implements IDisposable
+
+<div class="row m-2">
+    <h1>Equipment</h1>
+    <div class="col equipment-border">
+        <div class="row">
+            <EquipmentCard weapon="EqipmentService.EquippedWeapon" />
+        </div>
+    </div>
+</div>
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        EqipmentService.OnChange += StateHasChanged;
+        BattleService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        EqipmentService.OnChange -= StateHasChanged;
+        BattleService.OnChange -= StateHasChanged;
+    }
+
+}
+<style>
+    .equipment-border {
+        border: 1px solid black;
+    }
+</style>

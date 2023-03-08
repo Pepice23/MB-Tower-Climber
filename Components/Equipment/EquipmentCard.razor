@@ -1,0 +1,27 @@
+﻿<div class="col m-2 equipment-border text-black">
+    <div class="row">
+        <div class="col">
+            <img src="@weapon.PicturePath" alt="@weapon.Name" class="picture-size m-2" />
+        </div>
+        <div class="col">
+            <h6>@weapon.Name</h6>
+            <h6>Level: @weapon.Level</h6>
+            <h6>
+                Damage/Click:@CalcUtils.FormatNumber(weapon.PerClickDamage)
+            </h6>
+            <h6>Damage/Sec:@CalcUtils.FormatNumber(weapon.PerSecondDamage)</h6>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public Weapon weapon { get; set; }
+}
+
+<style>
+    .equipment-border {
+        border: 1px solid black;
+    }
+</style>
