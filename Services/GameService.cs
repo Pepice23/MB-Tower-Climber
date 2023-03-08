@@ -50,7 +50,7 @@
 
         public void ChangeBackground()
         {
-            int randomNumber = random.Next(1, 59);
+            int randomNumber = random.Next(1, 58);
             BackgroundPicture = $"bg-{randomNumber}.png";
         }
 
