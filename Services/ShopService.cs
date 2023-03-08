@@ -22,6 +22,8 @@ namespace MB_Tower_Climber.Services
             {
                 _equipmentService.EquippedArmor = armor;
                 _playerService.Money -= armor.TotalPrice;
+                _playerService.CalculatePerClickDamage();
+                _playerService.CalculatePerSecondDamage();
                 RemoveArmorFromList(armor);
                 NotifyStateChanged();
             }

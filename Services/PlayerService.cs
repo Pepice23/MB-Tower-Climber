@@ -20,9 +20,9 @@
         public int PlayerLevel { get; set; } = 1;
         public int CurrentXP { get; set; } = 0;
         public int XPToNextLevel { get; set; } = 100;
-        public int DamagePerClick { get; set; } = 10;
-        public int DamagePerSecond { get; set; } = 100;
-        public int Money { get; set; } = 3000;
+        public int DamagePerClick { get; set; } = 1;
+        public int DamagePerSecond { get; set; } = 1;
+        public int Money { get; set; } = 2000;
 
         public bool IsPlayerVisible { get; set; } = true;
 
@@ -68,13 +68,13 @@
 
         public void CalculatePerClickDamage()
         {
-            DamagePerClick = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerClickDamage;
+            DamagePerClick = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerClickDamage * _equipmentService.EquippedArmor.DamageMultiplier;
             NotifyStateChanged();
         }
 
         public void CalculatePerSecondDamage()
         {
-            DamagePerSecond = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerSecondDamage;
+            DamagePerSecond = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerSecondDamage * _equipmentService.EquippedArmor.DamageMultiplier;
             NotifyStateChanged();
         }
 
