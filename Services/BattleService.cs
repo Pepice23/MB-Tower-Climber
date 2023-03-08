@@ -159,6 +159,23 @@ namespace MB_Tower_Climber.Services
             NotifyStateChanged();
         }
 
+        public void NormalSpeed()
+        {
+            GameSpeed = TimeSpan.FromSeconds(1);
+        }
+
+
+        public void TwoSpeed()
+        {
+            GameSpeed = TimeSpan.FromMilliseconds(500);
+        }
+
+
+        public void FourSpeed()
+        {
+            GameSpeed = TimeSpan.FromMilliseconds(250);
+        }
+
         private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }
