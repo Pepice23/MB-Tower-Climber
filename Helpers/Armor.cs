@@ -7,6 +7,7 @@
         public int RecipePrice { get; set; }
         public int OresToCraft { get; set; }
         public int OrePrice { get; set; }
+        public int TotalPrice { get; set; }
         public string PicturePath { get; set; }
         public int DamageMultiplier { get; set; }
         public List<Armor> Armors { get; set; }
@@ -20,6 +21,7 @@
             this.OrePrice = OrePrice;
             this.PicturePath = PicturePath;
             this.DamageMultiplier = DamageMultiplier;
+            TotalPrice = OrePrice * OresToCraft + RecipePrice;
         }
 
         //public Armor FresirineArmor = new Armor("Fresirine Armor", 10, 1000, 100, 10, "assets/armors/armor1.png", 2);

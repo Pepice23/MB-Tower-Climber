@@ -1,0 +1,13 @@
+﻿@inject EquipmentService EqipmentService
+
+<h1>Armor Shop</h1>
+<div class="col">
+    @foreach (Armor armor in EqipmentService.Armors)
+    {
+        <ArmorShopCard Armor="armor" />
+    }
+</div>
+
+@code {
+
+}

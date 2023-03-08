@@ -1,0 +1,64 @@
+﻿<div class="row m-2 equipment-border box-size">
+    <div class="col">
+        <div class="row m-2">
+            <div class="col">
+                <h3>@Armor.Name</h3>
+                <h3>Available from floor: @Armor.AvailableFromFloor</h3>
+                <img src="@Armor.PicturePath"
+                     alt="@Armor.Name"
+                     class="picture-size" />
+                <h3>Damage:@Armor.DamageMultiplier x</h3>
+                <h3>
+                    Recipe Price: @CalcUtils.FormatNumber(Armor.RecipePrice) Gold
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>
+                    Ores To Craft:
+                    @CalcUtils.FormatNumber(Armor.OresToCraft)
+                </h3>
+                <h3>
+                    Ore price: @CalcUtils.FormatNumber(Armor.OrePrice)
+                </h3>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <h1>Crafting</h1>
+                <h2>Total price: @CalcUtils.FormatNumber(Armor.TotalPrice) Gold</h2>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col">
+                <button class="btn btn-success w-75">
+                    Craft Armor
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Armor Armor { get; set; }
+
+
+}
+
+<style>
+    .picture-size {
+        width: 100px;
+        height: 100px;
+    }
+
+    .equipment-border {
+        border: 1px solid black;
+    }
+
+    .box-size {
+        width: 400px;
+        height: 600px;
+    }
+</style>
