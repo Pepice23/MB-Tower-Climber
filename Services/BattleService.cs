@@ -5,7 +5,7 @@ namespace MB_Tower_Climber.Services
 {
     public class BattleService
     {
-        Random random = new Random();
+        Random random = new();
 
         private PeriodicTimer NormalTimer;
         private PeriodicTimer BossTimer;

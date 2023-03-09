@@ -13,7 +13,7 @@
             CalculatePerSecondDamage();
         }
 
-        Random random = new Random();
+        Random random = new();
 
         private int _xpBarWidth;
 
