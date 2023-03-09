@@ -112,7 +112,7 @@ namespace MB_Tower_Climber.Services
             }
         }
 
-        private void CheckWeapon()
+        public void CheckWeapon()
         {
             if (_equipmentService.NewWeapon.PerClickDamage > _equipmentService.EquippedWeapon.PerClickDamage && _equipmentService.NewWeapon.PerSecondDamage > _equipmentService.EquippedWeapon.PerSecondDamage)
             {

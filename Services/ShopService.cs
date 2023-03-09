@@ -8,12 +8,14 @@ namespace MB_Tower_Climber.Services
 
         private readonly PlayerService _playerService;
         private EquipmentService _equipmentService;
+        private readonly BattleService _battleService;
         
 
-        public ShopService(PlayerService playerService, EquipmentService equipmentService, GameService gameService)
+        public ShopService(PlayerService playerService, EquipmentService equipmentService, BattleService battleService)
         {
             _playerService = playerService;
             _equipmentService = equipmentService;
+            _battleService = battleService;
         }
 
         public void BuyArmor(Armor armor)
@@ -27,6 +29,14 @@ namespace MB_Tower_Climber.Services
                 RemoveArmorFromList(armor);
                 NotifyStateChanged();
             }
+        }
+
+        public void BuyWeapon()
+        {
+            _playerService.Money -= 2000;
+            _equipmentService.NewWeapon = new Weapon(_playerService.PlayerLevel);
+            _battleService.CheckWeapon();
+            NotifyStateChanged();
         }
 
         void RemoveArmorFromList(Armor armor)
