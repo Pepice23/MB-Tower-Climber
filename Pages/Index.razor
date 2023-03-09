@@ -1,37 +1,20 @@
 ﻿@page "/"
 
-@inject GameService GameService
-@implements IDisposable
-
 <DeveloperConsole />
-<div class="row m-3 battle-background" style="@GameService.BattleBackground">
-    <StageDisplay />
-    <Battle />
-    <div class="row m-2">
-        <div class="col m-2">
-            <button class="btn btn-dark">
-                <img src="/assets/UI/attack-button.png"
-                     alt="attack button"
-                     class="attack-button" />
-            </button>
-        </div>
+<BattleScreen />
+<div class="row">
+    <div class="col">
+        <PlayerEquipment />
+    </div>
+    <div class="col">
+        <ItemLog />
     </div>
 </div>
-<PlayerEquipment />
 <Shops />
 
 @code {
-    protected override void OnInitialized()
-    {
-        GameService.OnChange += StateHasChanged;
-    }
 
-    public void Dispose()
-    {
-        GameService.OnChange -= StateHasChanged;
-    }
 }
-
 
 <style>
     .attack-button {

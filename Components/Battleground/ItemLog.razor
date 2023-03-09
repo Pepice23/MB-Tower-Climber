@@ -1,0 +1,23 @@
+﻿@inject BattleService BattleService
+@implements IDisposable
+
+<div class="row m-2">
+    <h1>Item Log</h1>
+    <h3 class="m-2">
+        @BattleService.ItemLog
+    </h3>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        BattleService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        BattleService.OnChange -= StateHasChanged;
+    }
+
+}
