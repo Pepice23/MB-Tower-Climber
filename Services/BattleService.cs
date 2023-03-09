@@ -1,6 +1,5 @@
 ﻿using MB_Tower_Climber.Helpers;
 using System.Diagnostics;
-using System.Threading;
 
 namespace MB_Tower_Climber.Services
 {
@@ -20,7 +19,7 @@ namespace MB_Tower_Climber.Services
         public int BossTime { get; set; } = 30;
         public int RemainingBossTime { get; set; } = 30;
         public string BossTimerString => $"width:{_bossTimerWidth}%";
-        public string Outcome;
+        public string Outcome { get; set; } = "";
         public string ItemLog { get; set; }
         private int _bossTimerWidth = 100;
 
@@ -98,7 +97,6 @@ namespace MB_Tower_Climber.Services
         {
             _gameService.AddFloor();
             _gameService.ResetMonster();
-            // TODO: get new weapon
             NotifyStateChanged();
         }
 
@@ -150,7 +148,7 @@ namespace MB_Tower_Climber.Services
         private void PlayerWins()
         {
             _monsterService.IsMonsterVisible = false;
-            Outcome = "You win"!;
+            Outcome = "You win!";
             _gameService.AddMonster();
             _gameService.TotalMonsterCount++;
             _playerService.CalculateXP();

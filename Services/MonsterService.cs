@@ -36,7 +36,6 @@ namespace MB_Tower_Climber.Services
             NotifyStateChanged();
         }
 
-
         public void CalculateHPWidth()
         {
             _hpBarWidth = CurrentMonsterHP * 100 / MonsterMaxHP;
