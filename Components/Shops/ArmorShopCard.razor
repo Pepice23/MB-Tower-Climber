@@ -1,4 +1,7 @@
 ﻿@inject ShopService ShopService
+@inject PlayerService PlayerService
+@inject EquipmentService EquipmentService
+@implements IDisposable
 
 <div class="row m-2 equipment-border box-size">
     <div class="col">
@@ -34,19 +37,36 @@
         </div>
         <div class="row m-2">
             <div class="col">
-                <button class="btn btn-success w-75" @onclick="() => ShopService.BuyArmor(Armor)">
+                <button class="btn btn-success w-75" @onclick="() => ShopService.BuyArmor(Armor)" disabled="@CantBuyArmor">
                     Craft Armor
                 </button>
             </div>
         </div>
     </div>
+    <h3>@CantBuyArmor</h3>
 </div>
 
 @code {
     [Parameter]
     public Armor Armor { get; set; }
 
+    bool NotEnoughMoney => PlayerService.Money < Armor.TotalPrice;
+    bool HasBetterArmor => EquipmentService.EquippedArmor.DamageMultiplier >= Armor.DamageMultiplier;
+    bool CantBuyArmor => NotEnoughMoney || HasBetterArmor;
 
+    protected override void OnInitialized()
+    {
+        ShopService.OnChange += StateHasChanged;
+        PlayerService.OnChange += StateHasChanged;
+        EquipmentService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        ShopService.OnChange -= StateHasChanged;
+        PlayerService.OnChange -= StateHasChanged;
+        EquipmentService.OnChange -= StateHasChanged;
+    }
 }
 
 <style>

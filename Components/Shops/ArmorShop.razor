@@ -7,7 +7,7 @@
 <div class="col">
     @foreach (Armor armor in EqipmentService.Armors)
     {
-        @if (armor.AvailableFromFloor <= GameService.FloorCount)
+        @if (armor.AvailableFromFloor <= GameService.FloorCount && EqipmentService.EquippedArmor.DamageMultiplier < armor.DamageMultiplier)
         {
             <ArmorShopCard Armor="armor" />
         }
