@@ -5,7 +5,7 @@
         public event Action OnChange;
         Random random = new Random();
 
-        public int FloorCount { get; set; } = 11;
+        public int FloorCount { get; set; } = 1;
         public int MonsterCount { get; set; } = 0;
         public int TotalMonsterCount { get; set; } = 0;
 
