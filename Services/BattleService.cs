@@ -21,6 +21,7 @@ namespace MB_Tower_Climber.Services
         public int RemainingBossTime { get; set; } = 30;
         public string BossTimerString => $"width:{_bossTimerWidth}%";
         public string Outcome;
+        public string ItemLog { get; set; }
         private int _bossTimerWidth = 100;
 
         public void CalculateBossTimerWidth()
@@ -120,6 +121,12 @@ namespace MB_Tower_Climber.Services
                 _equipmentService.EquippedWeapon = _equipmentService.NewWeapon;
                 _playerService.CalculatePerClickDamage();
                 _playerService.CalculatePerSecondDamage();
+                ItemLog = $"You got a new weapon! {_equipmentService.EquippedWeapon.Name} It is better than your previous weapon.";
+            }
+            else
+            {
+                _playerService.Money += _equipmentService.NewWeapon.Price;
+                ItemLog = $"You found a {_equipmentService.NewWeapon.Name}. But it is not better than what you have. It was sold for {_equipmentService.NewWeapon.Price} gold.";
             }
             NotifyStateChanged();
         }
