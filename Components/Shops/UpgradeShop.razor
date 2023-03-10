@@ -1,0 +1,21 @@
+﻿@inject EquipmentService EquipmentService
+@implements IDisposable
+
+<h1>Upgrade Shop</h1>
+<div class="col">
+    <PetUpgradeShopCard petUpgrade="EquipmentService.EquippedPet" />
+</div>
+@code {
+
+    protected override void OnInitialized()
+    {
+        EquipmentService.OnChange += StateHasChanged;
+    }
+
+
+
+    public void Dispose()
+    {
+        EquipmentService.OnChange -= StateHasChanged;
+    }
+}

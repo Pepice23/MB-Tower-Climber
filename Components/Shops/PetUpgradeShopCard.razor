@@ -1,0 +1,48 @@
+﻿@inject ShopService ShopService
+@implements IDisposable
+
+<div class="row m-2 equipment-border">
+    <div class="col">
+        <div class="row m-2">
+            <div class="col">
+                <h3>@petUpgrade.PetName</h3>
+                <h3>@petUpgrade.Description</h3>
+                <h3>
+                    Level: @petUpgrade.Level/@petUpgrade.MaxLevel
+                </h3>
+                <h3>
+                    Upgrade Price:@CalcUtils.FormatNumber(petUpgrade.Cost) Gold
+                </h3>
+                <h3>
+                    + @petUpgrade.DamageMultiplier x Damage
+                </h3>
+                <button class="btn btn-primary" @onclick="ShopService.BuyPetUpgrade">
+                    Buy Upgrade
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public PetUpgrade petUpgrade { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ShopService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        ShopService.OnChange -= StateHasChanged;
+    }
+
+}
+
+<style scoped>
+    .equipment-border {
+        border: 1px solid black;
+    }
+</style>

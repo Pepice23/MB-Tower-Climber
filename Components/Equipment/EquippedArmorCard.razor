@@ -1,0 +1,25 @@
+﻿<div class="col m-2 equipment-border text-black">
+    <div class="row">
+        <div class="col">
+            <img src="@armor.PicturePath"
+                 alt="@armor.Name"
+                 class="picture-size m-2" />
+        </div>
+        <div class="col">
+            <h3>@armor.Name</h3>
+            <h3>Damage Multiplier:@armor.DamageMultiplier</h3>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Armor armor { get; set; }
+}
+
+<style>
+    .picture-size {
+        width: 100px;
+        height: 100px;
+    }
+</style>

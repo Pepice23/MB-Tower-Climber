@@ -1,0 +1,26 @@
+﻿<div class="col m-2 equipment-border text-black">
+    <div class="row">
+        <div class="col">
+            <img src="@dragon.PicturePath"
+                 alt="@dragon.PetName"
+                 class="picture-size m-2" />
+        </div>
+        <div class="col">
+            <h3>@dragon.PetName</h3>
+            <h3>Damage Multiplier:@dragon.DamageMultiplier</h3>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public PetUpgrade dragon { get; set; }
+}
+
+<style>
+    .picture-size {
+        width: 100px;
+        height: 100px;
+    }
+</style>
