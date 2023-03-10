@@ -68,13 +68,13 @@
 
         public void CalculatePerClickDamage()
         {
-            DamagePerClick = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerClickDamage * _equipmentService.EquippedArmor.DamageMultiplier;
+            DamagePerClick = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerClickDamage * _equipmentService.EquippedArmor.DamageMultiplier * _equipmentService.EquippedPet.DamageMultiplier;
             NotifyStateChanged();
         }
 
         public void CalculatePerSecondDamage()
         {
-            DamagePerSecond = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerSecondDamage * _equipmentService.EquippedArmor.DamageMultiplier;
+            DamagePerSecond = PlayerLevel * 2 + _equipmentService.EquippedWeapon.PerSecondDamage * _equipmentService.EquippedArmor.DamageMultiplier * _equipmentService.EquippedPet.DamageMultiplier;
             NotifyStateChanged();
         }
 

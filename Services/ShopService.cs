@@ -9,7 +9,7 @@ namespace MB_Tower_Climber.Services
         private readonly PlayerService _playerService;
         private EquipmentService _equipmentService;
         private readonly BattleService _battleService;
-        
+
 
         public ShopService(PlayerService playerService, EquipmentService equipmentService, BattleService battleService)
         {
@@ -44,7 +44,17 @@ namespace MB_Tower_Climber.Services
             _equipmentService.Armors.Remove(armor);
             NotifyStateChanged();
         }
-        
-        private void NotifyStateChanged() => OnChange?.Invoke();    
+
+        public void BuyPetUpgrade()
+        {
+            _equipmentService.EquippedPet.Level++;
+            _equipmentService.EquippedPet.DamageMultiplier += 2;
+            _equipmentService.EquippedPet.Cost = _equipmentService.EquippedPet.Level * 5000;
+            _playerService.CalculatePerClickDamage();
+            _playerService.CalculatePerSecondDamage();
+            NotifyStateChanged();
+        }
+
+        private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }

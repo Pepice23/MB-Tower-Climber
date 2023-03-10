@@ -10,6 +10,10 @@ namespace MB_Tower_Climber.Services
         public Weapon EquippedWeapon = new(1);
         public List<Armor> Armors = new();
         public Armor EquippedArmor = new("No Armor", 1, 0, 0, 0, "0", 1);
+        public PetUpgrade EquippedPet = new("Alexander The Dragon", "Alexander the Dragon will help you fight", "assets/pet/alexander.png", 5000, 1, 5, 1);
+
+
+
 
         public Armor FresirineArmor = new("Fresirine Armor", 10, 1000, 100, 10, "assets/armors/armor1.png", 2);
         public Armor CeymaniteArmor = new("Ceymanite Armor", 20, 2000, 200, 20, "assets/armors/armor2.png", 4);
