@@ -30,7 +30,7 @@ namespace MB_Tower_Climber.Services
         }
 
 
-        private readonly GameService _gameService;
+        private GameService _gameService;
         private MonsterService _monsterService;
         private PlayerService _playerService;
         private EquipmentService _equipmentService;
@@ -131,6 +131,7 @@ namespace MB_Tower_Climber.Services
 
         private void SetMonster()
         {
+            _playerService.IsPlayerVisible = true;
             _monsterService.IsMonsterVisible = true;
             _monsterService.SetRandomMonsterAvatar();
             _monsterService.SetMonsterHP();
@@ -139,9 +140,11 @@ namespace MB_Tower_Climber.Services
             NotifyStateChanged();
         }
 
-        private void PlayerLoses()
+        public void PlayerLoses()
         {
-            Debug.WriteLine("Player Loses");
+            Outcome = "You lose!";
+            _gameService.ResetMonster();
+            _gameService.TotalMonsterCount = (_gameService.FloorCount - 1) * 15 + 1;
             NotifyStateChanged();
         }
 
