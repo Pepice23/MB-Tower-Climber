@@ -22,7 +22,7 @@
         public int XPToNextLevel { get; set; } = 100;
         public int DamagePerClick { get; set; } = 1;
         public int DamagePerSecond { get; set; } = 1;
-        public int Money { get; set; } = 2000;
+        public int Money { get; set; } = 5000;
 
         public bool IsPlayerVisible { get; set; } = true;
 
